@@ -1,18 +1,17 @@
 name: Build
-on: [push, pull_request]
-
+on:
+  push:
+  pull_request:
 jobs:
   run:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
+      - name: Set up JDK 17.0.7
+        uses: actions/setup-java@v1
         with:
-          java-version: 17
-
-      - name: Build with Maven
-        run: mvn package
+          java-version: 17.0.7
+      - name: Install dependencies and build
+        run: |
+          ./mvnw install -B
