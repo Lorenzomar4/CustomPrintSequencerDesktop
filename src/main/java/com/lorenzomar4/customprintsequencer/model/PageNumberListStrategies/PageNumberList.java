@@ -9,7 +9,9 @@ public interface   PageNumberList {
     public List<Integer> generateListOfNumber();
 
     default public Boolean theNewRangeOverlapsWithMySelf(PageNumberList aPageNumberList){
-        return aPageNumberList.generateListOfNumber().stream().anyMatch(aNumberPage->generateListOfNumber().contains(aNumberPage));
+
+
+        return  (generateListOfNumber().size()==0) ? true :  aPageNumberList.generateListOfNumber().stream().anyMatch(aNumberPage->generateListOfNumber().contains(aNumberPage));
     }
 
     default public void ifThereAreOverlapsThenExceptionIsThrown(PageNumberList aPageNumberList) throws BusinessException {

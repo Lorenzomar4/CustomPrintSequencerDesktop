@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 
 public class Sequencer {
 
-    List<PageNumberList> listOfPagesNumbers;
+    List<PageNumberList> listOfPagesNumbers = new ArrayList<>();
 
     public void addListOfRangeOfPages(PageNumberList aPageNumberList) throws BusinessException {
+
         incomeValidation(aPageNumberList);
         listOfPagesNumbers.add(aPageNumberList);
     }
@@ -27,45 +28,41 @@ public class Sequencer {
         });
     }
 
-    public List<PageNumberList> getListOfPagesNumbers() {
-        return this.listOfPagesNumbers;
-    }
-
 
     public List<Integer> returnAlLNumberPages() {
         return listOfPagesNumbers.stream().flatMap(aRangeOfPages -> aRangeOfPages.generateListOfNumber().stream()).collect(Collectors.toList());
     }
 
-    public List<Integer> returnAllNumberPagesSortedascending() {
+    public List<Integer> returnAllNumberPagesSortedAscending() {
         List<Integer> pagesList = returnAlLNumberPages();
         Collections.sort(pagesList);
         return pagesList;
     }
 
     public Integer cantOfPages() {
-        return returnAlLNumberPages().stream().mapToInt(numberOfPage -> numberOfPage).sum();
+        return returnAlLNumberPages().size();
 
     }
 
     public List<Sheet> getPagesToPrint() {
-        final List<Integer> listSortedAscending = returnAllNumberPagesSortedascending();
+        final List<Integer> listSortedAscending = returnAllNumberPagesSortedAscending();
         final List<Sheet> sheetList = new ArrayList<>();
 
-
-        for (int i = 0; i < cantOfPages() - 1; i += 2) {
+        for (int i = 0; i <= cantOfPages() - 1; i = i + 2) {
             Integer numberPageFront = listSortedAscending.get(i);
-            Integer numberPageOpposite = listSortedAscending.get(i + 1);
 
             if (i + 1 < cantOfPages()) {
-                sheetList.add(Sheet.SheetWithFrontAnOpposite(new PageNumber(numberPageFront), new PageNumber(numberPageOpposite)));
+                Integer numberPageOpposite = listSortedAscending.get(i + 1);
+                sheetList.add(Sheet.SheetWithFrontAnOpposite(new PageOfSheet(numberPageFront), new PageOfSheet(numberPageOpposite)));
 
             } else {
-                sheetList.add(Sheet.SheetOnlyWithFront(new PageNumber(numberPageFront)));
+                sheetList.add(Sheet.SheetOnlyWithFront(new PageOfSheet(numberPageFront)));
+
             }
+
 
         }
         return sheetList;
     }
-
 
 }

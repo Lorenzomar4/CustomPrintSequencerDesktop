@@ -1,11 +1,11 @@
 package com.lorenzomar4.customprintsequencer.model;
 
 public class Sheet {
-    PageNumber front;
-    PageNumber opposite;
+    PageOfSheet front;
+    PageOfSheet opposite;
 
 
-    public static Sheet SheetWithFrontAnOpposite(PageNumber front, PageNumber opposite) {
+    public static Sheet SheetWithFrontAnOpposite(PageOfSheet front, PageOfSheet opposite) {
         final Sheet anSheet = new Sheet();
         anSheet.setFront(front);
         anSheet.setOpposite(opposite);
@@ -13,26 +13,28 @@ public class Sheet {
         return anSheet;
     }
 
-    public static Sheet SheetOnlyWithFront(PageNumber front) {
+    public static Sheet SheetOnlyWithFront(PageOfSheet front) {
         final Sheet anSheet = new Sheet();
         anSheet.setFront(front);
         return anSheet;
     }
 
 
-    public PageNumber getFront() {
-        return front;
-    }
-
-    public void setFront(PageNumber front) {
+    public void setFront(PageOfSheet front) {
         this.front = front;
     }
 
-    public PageNumber getOpposite() {
-        return opposite;
+
+    public void setOpposite(PageOfSheet opposite) {
+        this.opposite = opposite;
     }
 
-    public void setOpposite(PageNumber opposite) {
-        this.opposite = opposite;
+
+    public PageOfSheet getFront() {
+        return front;
+    }
+
+    public PageOfSheet getOpposite() {
+        return opposite;
     }
 }

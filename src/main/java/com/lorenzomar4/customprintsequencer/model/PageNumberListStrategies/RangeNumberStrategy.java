@@ -14,11 +14,23 @@ public class RangeNumberStrategy implements PageNumberList {
 
     List<PageNumberList> listOfPageNumbersNotConsidered = new ArrayList<>();
 
+
+    public RangeNumberStrategy(Integer initialRange, Integer finalRange) throws BusinessException {
+
+        if(initialRange>finalRange) {
+            throw  new BusinessException("El rango inicial debe ser menor al final");
+
+        }
+
+        this.initialRange = initialRange;
+        this.finalRange = finalRange;
+    }
+
     public List<Integer> getListOfIntegers() {
         return IntStream.rangeClosed(initialRange, finalRange).boxed().collect(Collectors.toList());
     }
 
-    private List<Integer> rangeOfPagesNotConsideredFlatten() {
+    public List<Integer> rangeOfPagesNotConsideredFlatten() {
         return listOfPageNumbersNotConsidered.stream()
                 .flatMap(aListOfIntegers -> aListOfIntegers.generateListOfNumber().stream())
                 .collect(Collectors.toList());
@@ -32,7 +44,7 @@ public class RangeNumberStrategy implements PageNumberList {
 
     @Override
     public List<Integer> generateListOfNumber() {
-        return getListOfIntegers().stream().filter(aPage -> isAPageNotConsidered(aPage)).collect(Collectors.toList());
+        return getListOfIntegers().stream().filter(aPage -> !isAPageNotConsidered(aPage)).collect(Collectors.toSet()).stream().collect(Collectors.toList());
     }
 
     @Override
@@ -44,9 +56,30 @@ public class RangeNumberStrategy implements PageNumberList {
         listOfPageNumbersNotConsidered.add(aPageNumberList);
     }
 
-    @Override
-    public Boolean theNewRangeOverlapsWithMySelf(PageNumberList aPageNumberList) {
-        return true;
+    public void deleteAllNotConsideredNumbers(){
+        listOfPageNumbersNotConsidered.clear();
+    }
+
+
+    public void setInitialRange(Integer initialRange) throws BusinessException {
+        if(initialRange>finalRange){
+            throw new BusinessException("el rango incial debe ser menor al final");
+        }
+
+        deleteAllNotConsideredNumbers();
+        this.initialRange = initialRange;
+    }
+
+
+
+    public void setFinalRange(Integer finalRange) throws BusinessException {
+
+        if(initialRange>finalRange){
+            throw new BusinessException("el rango final debe ser mayor al inicial");
+        }
+
+        deleteAllNotConsideredNumbers();
+        this.finalRange = finalRange;
     }
 
     /*
