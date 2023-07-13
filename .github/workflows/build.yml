@@ -14,4 +14,4 @@ jobs:
           java-version: 17.0.7
       - name: Install dependencies and build
         run: |
-          ./mvnw install -B
+          mvn install -B
