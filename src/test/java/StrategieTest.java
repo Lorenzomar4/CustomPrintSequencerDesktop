@@ -1,5 +1,5 @@
-import com.lorenzomar4.customprintsequencer.model.PageNumberListStrategies.ExplicitNumberListStrategy;
-import com.lorenzomar4.customprintsequencer.model.PageNumberListStrategies.RangeNumberStrategy;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByExplicitNumberList;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByRangeNumber;
 import com.lorenzomar4.customprintsequencer.model.exception.BusinessException;
 import org.junit.jupiter.api.*;
 
@@ -11,19 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StrategieTest {
 
-    ExplicitNumberListStrategy listOfPagesNumber;
+    ByExplicitNumberList listOfPagesNumber;
 
-    RangeNumberStrategy listOfRangePagesNumber;
+    ByRangeNumber listOfRangePagesNumber;
 
-    RangeNumberStrategy listOfRangePagesNumber2;
-    RangeNumberStrategy listOfRangePagesNumber3;
+    ByRangeNumber listOfRangePagesNumber2;
+    ByRangeNumber listOfRangePagesNumber3;
 
     @BeforeEach
     void initialize() throws BusinessException {
-        listOfPagesNumber = new ExplicitNumberListStrategy();
-        listOfRangePagesNumber = new RangeNumberStrategy(1, 10);
-        listOfRangePagesNumber2 = new RangeNumberStrategy(8, 10);
-        listOfRangePagesNumber3 = new RangeNumberStrategy(30, 70);
+        listOfPagesNumber = new ByExplicitNumberList();
+        listOfRangePagesNumber = new ByRangeNumber(1, 10);
+        listOfRangePagesNumber2 = new ByRangeNumber(8, 10);
+        listOfRangePagesNumber3 = new ByRangeNumber(30, 70);
     }
     @Test
     @DisplayName("Se agrega secuencialmente numeros a la lista del objeto listOfPagesNumber y luego se retorna la lista completa de numeros ingresados")
@@ -98,7 +98,7 @@ public class StrategieTest {
     @DisplayName("Al crear un nuevo rango de paginas se lanza una excepcion por asignar un rango inicial mayor al rango final")
     void launchExceptionIfTheInitialRangeIsGreaterThanFinaleRange(){
         assertThrows(BusinessException.class, () -> {
-            RangeNumberStrategy rangeOfNumberInvalid =  new RangeNumberStrategy(10,4);
+            ByRangeNumber rangeOfNumberInvalid =  new ByRangeNumber(10,4);
         });
     }
 
@@ -118,7 +118,7 @@ public class StrategieTest {
     @Test
     @DisplayName("Si el rango inicial es igual al final entonces se retorna una lista con un solo numero")
     void ifTheInitialRangeIsEqualThanFinaleThenReturnListWhitAnUniqueNumber() throws BusinessException {
-        RangeNumberStrategy listOfRangeWhitUniqueNumberInTheList = new RangeNumberStrategy(4,4);
+        ByRangeNumber listOfRangeWhitUniqueNumberInTheList = new ByRangeNumber(4,4);
 
         Assertions.assertEquals(new ArrayList<>(List.of(4)) , listOfRangeWhitUniqueNumberInTheList.generateListOfNumber() );
 

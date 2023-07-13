@@ -1,46 +1,24 @@
 package com.lorenzomar4.customprintsequencer.model;
 
-import com.lorenzomar4.customprintsequencer.model.PageNumberListStrategies.PageNumberList;
-import com.lorenzomar4.customprintsequencer.model.exception.BusinessException;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByExplicitNumberList;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.PageNumberReturner;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Sequencer {
 
-    List<PageNumberList> listOfPagesNumbers = new ArrayList<>();
-
-    public void addListOfRangeOfPages(PageNumberList aPageNumberList) throws BusinessException {
-
-        incomeValidation(aPageNumberList);
-        listOfPagesNumbers.add(aPageNumberList);
-    }
-
-    private void incomeValidation(PageNumberList aPageNumberList) {
-        listOfPagesNumbers.forEach(aPageNumberListOption -> {
-            try {
-                aPageNumberListOption.ifThereAreOverlapsThenExceptionIsThrown(aPageNumberList);
-            } catch (BusinessException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
-
-
-    public List<Integer> returnAlLNumberPages() {
-        return listOfPagesNumbers.stream().flatMap(aRangeOfPages -> aRangeOfPages.generateListOfNumber().stream()).collect(Collectors.toList());
-    }
+    PageNumberReturner pageNumberReturner = new ByExplicitNumberList();
 
     public List<Integer> returnAllNumberPagesSortedAscending() {
-        List<Integer> pagesList = returnAlLNumberPages();
+        List<Integer> pagesList = pageNumberReturner.generateListOfNumber();
         Collections.sort(pagesList);
         return pagesList;
     }
 
     public Integer cantOfPages() {
-        return returnAlLNumberPages().size();
+        return pageNumberReturner.generateListOfNumber().size();
 
     }
 
@@ -57,12 +35,16 @@ public class Sequencer {
 
             } else {
                 sheetList.add(Sheet.SheetOnlyWithFront(new PageOfSheet(numberPageFront)));
-
             }
-
-
         }
         return sheetList;
     }
 
+    public PageNumberReturner getPageNumberReturner() {
+        return pageNumberReturner;
+    }
+
+    public void setPageNumberReturner(PageNumberReturner pageNumberReturner) {
+        this.pageNumberReturner = pageNumberReturner;
+    }
 }

@@ -1,4 +1,4 @@
-package com.lorenzomar4.customprintsequencer.model.PageNumberListStrategies;
+package com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies;
 
 import com.lorenzomar4.customprintsequencer.model.exception.BusinessException;
 
@@ -7,15 +7,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RangeNumberStrategy implements PageNumberList {
+public class ByRangeNumber implements PageNumberReturner {
 
     Integer initialRange;
     Integer finalRange;
 
-    List<PageNumberList> listOfPageNumbersNotConsidered = new ArrayList<>();
+    List<PageNumberReturner> listOfPageNumbersNotConsidered = new ArrayList<>();
 
 
-    public RangeNumberStrategy(Integer initialRange, Integer finalRange) throws BusinessException {
+    public ByRangeNumber(Integer initialRange, Integer finalRange) throws BusinessException {
 
         if(initialRange>finalRange) {
             throw  new BusinessException("El rango inicial debe ser menor al final");
@@ -48,12 +48,12 @@ public class RangeNumberStrategy implements PageNumberList {
     }
 
     @Override
-    public void addlistOfPageNumbersNotConsidered(PageNumberList aPageNumberList) throws BusinessException {
-        if (!theNewRangeOverlapsWithMySelf(aPageNumberList)) {
+    public void addlistOfPageNumbersNotConsidered(PageNumberReturner aPageNumberReturner) throws BusinessException {
+        if (!theNewRangeOverlapsWithMySelf(aPageNumberReturner)) {
             throw new BusinessException("La pagina o lista de paginas no esta incluido en ningun rango");
         }
 
-        listOfPageNumbersNotConsidered.add(aPageNumberList);
+        listOfPageNumbersNotConsidered.add(aPageNumberReturner);
     }
 
     public void deleteAllNotConsideredNumbers(){

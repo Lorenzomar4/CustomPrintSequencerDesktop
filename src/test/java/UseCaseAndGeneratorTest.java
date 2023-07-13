@@ -1,6 +1,7 @@
 import com.lorenzomar4.customprintsequencer.model.Generator;
-import com.lorenzomar4.customprintsequencer.model.PageNumberListStrategies.ExplicitNumberListStrategy;
-import com.lorenzomar4.customprintsequencer.model.PageNumberListStrategies.RangeNumberStrategy;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByCompositionOfStrategies;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByExplicitNumberList;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByRangeNumber;
 import com.lorenzomar4.customprintsequencer.model.Sequencer;
 import com.lorenzomar4.customprintsequencer.model.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
@@ -13,25 +14,29 @@ public class UseCaseAndGeneratorTest {
 
     Sequencer sequencer;
 
-    ExplicitNumberListStrategy listOfPagesNumber;
+    ByExplicitNumberList listOfPagesNumber;
 
-    RangeNumberStrategy listOfRangePagesNumber;
+    ByRangeNumber listOfRangePagesNumber;
 
-    RangeNumberStrategy listOfRangePagesNumber2;
+    ByRangeNumber listOfRangePagesNumber2;
 
+    ByCompositionOfStrategies compositionOfPageNumberReturner;
 
     @BeforeEach
     void inititalize() throws BusinessException {
 
-        listOfPagesNumber = new ExplicitNumberListStrategy();
+        listOfPagesNumber = new ByExplicitNumberList();
 
-        listOfRangePagesNumber = new RangeNumberStrategy(1, 10);
+        listOfRangePagesNumber = new ByRangeNumber(1, 10);
 
-        listOfRangePagesNumber2 = new RangeNumberStrategy(30, 33);
+        listOfRangePagesNumber2 = new ByRangeNumber(30, 33);
+
+        compositionOfPageNumberReturner = new ByCompositionOfStrategies();
+
+        compositionOfPageNumberReturner.addNewPageNumberReturner(listOfRangePagesNumber);
 
         sequencer = new Sequencer();
-
-        sequencer.addListOfRangeOfPages(listOfRangePagesNumber);
+        sequencer.setPageNumberReturner(compositionOfPageNumberReturner);
 
         generator = new Generator(sequencer);
 
@@ -94,7 +99,7 @@ public class UseCaseAndGeneratorTest {
             " Se desea imprimir desde la pagina 1 a la 10 salvo  el rango entre 3 y 5 ")
     void useCase4() throws BusinessException {
 
-        RangeNumberStrategy subRange = new RangeNumberStrategy(3,5);
+        ByRangeNumber subRange = new ByRangeNumber(3,5);
         listOfRangePagesNumber.addlistOfPageNumbersNotConsidered(subRange);
 
         Assertions.assertEquals("1, 6, 8, 10",generator.onlyFrontPagesOfSheetString());
@@ -107,9 +112,9 @@ public class UseCaseAndGeneratorTest {
             "se desea imprimir la pagina 6 ")
     void useCase5() throws BusinessException {
 
-        RangeNumberStrategy subRange = new RangeNumberStrategy(1,4);
+        ByRangeNumber subRange = new ByRangeNumber(1,4);
         listOfPagesNumber.addNumberOfPage(6);
-        RangeNumberStrategy subRange2 = new RangeNumberStrategy(9,10);
+        ByRangeNumber subRange2 = new ByRangeNumber(9,10);
         listOfRangePagesNumber.addlistOfPageNumbersNotConsidered(subRange);
         listOfRangePagesNumber.addlistOfPageNumbersNotConsidered(listOfPagesNumber);
         listOfRangePagesNumber.addlistOfPageNumbersNotConsidered(subRange2);
@@ -124,14 +129,14 @@ public class UseCaseAndGeneratorTest {
     @DisplayName("Caso de uso 6 :  El rango anterior del caso 5 con sus exclusiones + 1 nuevo rango adicional")
     void useCase6() throws BusinessException {
 
-        RangeNumberStrategy subRange = new RangeNumberStrategy(1,4);
+        ByRangeNumber subRange = new ByRangeNumber(1,4);
         listOfPagesNumber.addNumberOfPage(6);
-        RangeNumberStrategy subRange2 = new RangeNumberStrategy(9,10);
+        ByRangeNumber subRange2 = new ByRangeNumber(9,10);
         listOfRangePagesNumber.addlistOfPageNumbersNotConsidered(subRange);
         listOfRangePagesNumber.addlistOfPageNumbersNotConsidered(listOfPagesNumber);
         listOfRangePagesNumber.addlistOfPageNumbersNotConsidered(subRange2);
 
-        sequencer.addListOfRangeOfPages(listOfRangePagesNumber2);
+        compositionOfPageNumberReturner.addNewPageNumberReturner(listOfRangePagesNumber2);
 
 
         Assertions.assertEquals("5, 8, 31, 33",generator.onlyFrontPagesOfSheetString());

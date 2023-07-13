@@ -1,9 +1,9 @@
-package com.lorenzomar4.customprintsequencer.model.PageNumberListStrategies;
+package com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExplicitNumberListStrategy implements  PageNumberList{
+public class ByExplicitNumberList implements PageNumberReturner {
 
     List<Integer> listOfPagesNumber = new ArrayList<>();
 
