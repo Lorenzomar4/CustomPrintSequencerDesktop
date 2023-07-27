@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
                 new File("src/main/java/com/lorenzomar4/customprintsequencer/view/main.fxml").toURI().toURL()
         );
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("CustomPrintSequencer");
         stage.setScene(scene);
         stage.show();
     }
