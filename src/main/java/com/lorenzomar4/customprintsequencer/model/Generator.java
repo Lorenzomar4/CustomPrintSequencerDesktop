@@ -1,5 +1,7 @@
 package com.lorenzomar4.customprintsequencer.model;
 
+import com.lorenzomar4.customprintsequencer.model.Sheet.ISheet;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,13 +15,13 @@ public class Generator {
 
 
     public List<PageOfSheet> onlyFrontPagesOfSheet() {
-        return sequencer.getPagesToPrint().stream().map(Sheet::getFront).collect(Collectors.toList());
+        return sequencer.getPagesToPrint().stream().map(ISheet::getFrontSide).collect(Collectors.toList());
     }
 
     public List<PageOfSheet> onlyOppositePagesOfSheet() {
         int cantOfPages = sequencer.cantOfPages();
         boolean isPair = cantOfPages%2==0;
-        List<PageOfSheet> listOfPages = sequencer.getPagesToPrint().stream().map(Sheet::getOpposite).toList();
+        List<PageOfSheet> listOfPages = sequencer.getPagesToPrint().stream().map(ISheet::getBackSide).toList();
 
         return (isPair) ? listOfPages :listOfPages.subList(0,listOfPages.size()-1);
     }

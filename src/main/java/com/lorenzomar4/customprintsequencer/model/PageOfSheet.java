@@ -12,7 +12,6 @@ public class PageOfSheet {
         return numberOfPage;
     }
 
-
     //Para uso con impresoras
     //  Boolean color;
 

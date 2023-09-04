@@ -2,6 +2,8 @@ package com.lorenzomar4.customprintsequencer.model;
 
 import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByExplicitNumberList;
 import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.PageNumberReturner;
+import com.lorenzomar4.customprintsequencer.model.Sheet.ISheet;
+import com.lorenzomar4.customprintsequencer.model.Sheet.SheetFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,20 +24,13 @@ public class Sequencer {
 
     }
 
-    public List<Sheet> getPagesToPrint() {
+    public List<ISheet> getPagesToPrint() {
         final List<Integer> listSortedAscending = returnAllNumberPagesSortedAscending();
-        final List<Sheet> sheetList = new ArrayList<>();
+        final SheetFactory sheetFactory = new SheetFactory(cantOfPages(), listSortedAscending);
+        final List<ISheet> sheetList = new ArrayList<>();
 
         for (int i = 0; i <= cantOfPages() - 1; i = i + 2) {
-            Integer numberPageFront = listSortedAscending.get(i);
-
-            if (i + 1 < cantOfPages()) {
-                Integer numberPageOpposite = listSortedAscending.get(i + 1);
-                sheetList.add(Sheet.SheetWithFrontAnOpposite(new PageOfSheet(numberPageFront), new PageOfSheet(numberPageOpposite)));
-
-            } else {
-                sheetList.add(Sheet.SheetOnlyWithFront(new PageOfSheet(numberPageFront)));
-            }
+            sheetList.add(sheetFactory.returnSheet(i));
         }
         return sheetList;
     }

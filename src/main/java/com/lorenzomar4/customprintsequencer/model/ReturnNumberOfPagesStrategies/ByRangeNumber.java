@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ByRangeNumber implements PageNumberReturner {
+public class ByRangeNumber extends PageNumberReturner {
 
     Integer initialRange;
     Integer finalRange;
@@ -17,9 +17,8 @@ public class ByRangeNumber implements PageNumberReturner {
 
     public ByRangeNumber(Integer initialRange, Integer finalRange) throws BusinessException {
 
-        if(initialRange>finalRange) {
-            throw  new BusinessException("El rango inicial debe ser menor al final");
-
+        if (initialRange > finalRange) {
+            throw new BusinessException("El rango inicial debe ser menor al final");
         }
 
         this.initialRange = initialRange;
@@ -27,7 +26,12 @@ public class ByRangeNumber implements PageNumberReturner {
     }
 
     public List<Integer> getListOfIntegers() {
-        return IntStream.rangeClosed(initialRange, finalRange).boxed().collect(Collectors.toList());
+        List<Integer> listOfInteger = new ArrayList<>();
+
+        for (int i = this.initialRange; i <= this.finalRange; i++) {
+            listOfInteger.add(i);
+        }
+        return listOfInteger;
     }
 
     public List<Integer> rangeOfPagesNotConsideredFlatten() {
@@ -35,7 +39,6 @@ public class ByRangeNumber implements PageNumberReturner {
                 .flatMap(aListOfIntegers -> aListOfIntegers.generateListOfNumber().stream())
                 .collect(Collectors.toList());
     }
-
     private boolean isAPageNotConsidered(Integer page) {
         return rangeOfPagesNotConsideredFlatten().contains(page);
     }
@@ -44,7 +47,7 @@ public class ByRangeNumber implements PageNumberReturner {
 
     @Override
     public List<Integer> generateListOfNumber() {
-        return getListOfIntegers().stream().filter(aPage -> !isAPageNotConsidered(aPage)).collect(Collectors.toSet()).stream().collect(Collectors.toList());
+        return getListOfIntegers().stream().filter(aPage -> !isAPageNotConsidered(aPage)).distinct().collect(Collectors.toList());
     }
 
     @Override
@@ -56,13 +59,13 @@ public class ByRangeNumber implements PageNumberReturner {
         listOfPageNumbersNotConsidered.add(aPageNumberReturner);
     }
 
-    public void deleteAllNotConsideredNumbers(){
+    public void deleteAllNotConsideredNumbers() {
         listOfPageNumbersNotConsidered.clear();
     }
 
 
     public void setInitialRange(Integer initialRange) throws BusinessException {
-        if(initialRange>finalRange){
+        if (initialRange > finalRange) {
             throw new BusinessException("el rango incial debe ser menor al final");
         }
 
@@ -71,10 +74,9 @@ public class ByRangeNumber implements PageNumberReturner {
     }
 
 
-
     public void setFinalRange(Integer finalRange) throws BusinessException {
 
-        if(initialRange>finalRange){
+        if (initialRange > finalRange) {
             throw new BusinessException("el rango final debe ser mayor al inicial");
         }
 
@@ -82,11 +84,5 @@ public class ByRangeNumber implements PageNumberReturner {
         this.finalRange = finalRange;
     }
 
-    /*
-       public boolean overlapingWithMyself(RangeOfPages aRangeOfPages) {
-        return (aRangeOfPages.getInitialRange() >= getInitialRange() && aRangeOfPages.getInitialRange() <= getFinalRange()) ||
-                (aRangeOfPages.getFinalRange() >= getInitialRange() && aRangeOfPages.getFinalRange() <= getFinalRange());
-    }
-    */
 
 }

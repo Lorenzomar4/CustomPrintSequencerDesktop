@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class  ByCompositionOfStrategies implements PageNumberReturner {
+public class  ByCompositionOfStrategies extends PageNumberReturner {
 
     public List<PageNumberReturner> listOfPageNumberReturner = new ArrayList<>();
 

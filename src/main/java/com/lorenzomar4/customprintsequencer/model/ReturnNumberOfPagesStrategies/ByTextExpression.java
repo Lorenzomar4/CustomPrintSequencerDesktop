@@ -2,7 +2,7 @@ package com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies
 
 import java.util.List;
 
-public class ByTextExpression implements PageNumberReturner {
+public class ByTextExpression extends PageNumberReturner {
 
     public String regularExpression;
 
