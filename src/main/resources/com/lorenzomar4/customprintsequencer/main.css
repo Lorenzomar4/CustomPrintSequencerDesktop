@@ -1,0 +1,128 @@
+.botton-main{
+    -fx-background-color: #ff284d;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 50;
+    -fx-text-fill: #ffdbe0;
+}
+
+.etiqueta-main{
+    -fx-font-size: 30px;
+    -fx-padding: 20px;
+    -fx-text-fill: #ff1c1c;
+    -fx-font-weight: 600;
+
+}
+
+.background-vbox{
+    -fx-background-color: white;
+    -fx-padding: 30px 20px 30px 20px
+
+}
+
+.rectangle{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+
+    -fx-border-width: 1px;
+}
+
+.textForm-stye{
+    -fx-background-color: #fafafa;
+    -fx-border-color: #4c555d;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 4px;
+
+
+}
+
+.textForm-stye:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #fa1550;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 4px;
+
+
+}
+
+.textForm-stye-result{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #989797;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 4px;
+    -fx-control-inner-background: white; /* Hace que el padding sea transparente */
+
+
+}
+
+.textForm-stye-result:focused{
+    -fx-border-color: #fa1550;
+
+
+}
+
+.button-range{
+    -fx-background-color: #f34567;
+    -fx-text-fill: white;
+    -fx-background-radius: 3px;
+    -fx-min-height: 30px;
+}
+
+.button-confirm{
+    -fx-background-color: #0da1fd;
+    -fx-min-height: 30px;
+
+}
+
+.button-confirm:hover{
+    -fx-background-color: #007cc2;
+    -fx-min-height: 30px;
+
+}
+
+.button-confirm:pressed{
+    -fx-background-color: #0da1fd;
+    -fx-min-height: 30px;
+
+}
+
+
+.button-cancelar{
+    -fx-background-color: #a1a1a1;
+    -fx-min-height: 30px;
+}
+
+
+.button-cancelar:hover{
+    -fx-background-color: #7e7e7e;
+
+}
+
+.button-cancelar:pressed{
+    -fx-background-color: #a1a1a1;
+
+}
+
+
+.button-copy{
+    -fx-background-color: #270733;
+    -fx-min-height: 30px;
+    -fx-cursor: hand;
+
+}
+
+.button-copy:hover{
+    -fx-background-color: #ff3c68;
+    -fx-min-height: 30px;
+
+}
+
+.button-copy:pressed{
+    -fx-background-color: #ff0440;
+    -fx-min-height: 30px;
+
+}
+
+
+

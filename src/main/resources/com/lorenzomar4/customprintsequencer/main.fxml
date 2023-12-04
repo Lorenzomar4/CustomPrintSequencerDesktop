@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="587.0" spacing="10.0" styleClass="background-vbox" stylesheets="@main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lorenzomar4.customprintsequencer.controller.CustomPrinterSequencerController.CustomPrintSequencerController">
+   <children>
+      <HBox prefHeight="24.0" prefWidth="440.0">
+         <children>
+            <Label text="Intervalo de Paginas" textFill="#514f4f">
+               <font>
+                  <Font name="Arial" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Separator minWidth="-Infinity" prefHeight="0.0" prefWidth="568.0" />
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="88.0" prefWidth="491.0" spacing="10.0" styleClass="rectangle">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+         <children>
+            <GridPane HBox.hgrow="ALWAYS">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Label text="Pagina inicial" textFill="#37335b">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="initialPage" onAction="#confirm" prefHeight="38.0" prefWidth="166.0" promptText="Ingrese un numero" styleClass="textForm-stye">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="109.0" spacing="10.0" GridPane.columnIndex="1">
+                     <children>
+                        <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" styleClass="button-range" text="Excluir paginas">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" styleClass="button-range" text="Excluir rangos">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="2">
+                     <children>
+                        <Label text="Pagina final">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="finalPage" onAction="#confirm" prefHeight="38.0" prefWidth="151.0" promptText="Ingrese un numero" styleClass="textForm-stye">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+      <Separator minWidth="-Infinity" prefHeight="0.0" prefWidth="568.0" />
+      <HBox fx:id="confirmButton" alignment="TOP_RIGHT" prefHeight="94.0" prefWidth="547.0" spacing="10.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="376.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="74.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../../../images/1250680.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="76.0" prefWidth="300.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="167.0" text="Numero de hojas necesarias :" textFill="#331157">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalNumberOfSheet" prefHeight="17.0" prefWidth="105.0" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="153.0" text="Numero total de paginas :" textFill="#5b5b5b">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalNumberOfPages" prefHeight="17.0" prefWidth="105.0" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="242.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="172.0" text="Total de páginas en el frente :" textFill="#6f6f6f">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalNumberOfFrontPages" prefHeight="17.0" prefWidth="30.0" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="20.0" prefWidth="171.0" text="Total de páginas en el dorso :" textFill="#9392a1">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalNumberOfOppositePages" prefHeight="17.0" prefWidth="105.0" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <Button mnemonicParsing="false" onAction="#cancel" styleClass="button-cancelar" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#confirm" prefWidth="84.0" styleClass="button-confirm" text="Aceptar" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <VBox prefHeight="154.0" prefWidth="562.0" spacing="10.0">
+         <children>
+            <Label text="Todas las paginas del lado frontal">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="onlyFrontPages" editable="false" prefHeight="107.0" prefWidth="562.0" promptText="Debe Indicar primero la pagina inicial y final" styleClass="textForm-stye-result" wrapText="true" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="562.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clipFront" prefWidth="84.0" styleClass="button-copy" text="Copiar" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="154.0" prefWidth="562.0" spacing="10.0">
+         <children>
+            <Label text="Todas las paginas del lado opuesto">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="onlyOppositePages" editable="false" prefHeight="107.0" prefWidth="562.0" promptText="Debe Indicar primero la pagina inicial y final" styleClass="textForm-stye-result" wrapText="true" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="562.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clipBack" prefWidth="84.0" styleClass="button-copy" text="Copiar" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>

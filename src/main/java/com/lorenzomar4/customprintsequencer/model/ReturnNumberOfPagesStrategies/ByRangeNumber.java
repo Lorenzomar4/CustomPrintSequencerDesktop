@@ -9,20 +9,22 @@ import java.util.stream.IntStream;
 
 public class ByRangeNumber extends PageNumberReturner {
 
-    Integer initialRange;
-    Integer finalRange;
+    Integer initialRange = 0;
+    Integer finalRange = 0;
 
     List<PageNumberReturner> listOfPageNumbersNotConsidered = new ArrayList<>();
 
 
-    public ByRangeNumber(Integer initialRange, Integer finalRange) throws BusinessException {
 
-        if (initialRange > finalRange) {
-            throw new BusinessException("El rango inicial debe ser menor al final");
-        }
+
+    public ByRangeNumber(Integer initialRange, Integer finalRange) throws BusinessException {
 
         this.initialRange = initialRange;
         this.finalRange = finalRange;
+    }
+
+    public ByRangeNumber() {
+
     }
 
     public List<Integer> getListOfIntegers() {
@@ -65,20 +67,20 @@ public class ByRangeNumber extends PageNumberReturner {
 
 
     public void setInitialRange(Integer initialRange) throws BusinessException {
-        if (initialRange > finalRange) {
-            throw new BusinessException("el rango incial debe ser menor al final");
-        }
+
 
         deleteAllNotConsideredNumbers();
         this.initialRange = initialRange;
     }
 
+    private Integer rangeDiference(){
+
+        return finalRange -  initialRange;
+
+    }
+
 
     public void setFinalRange(Integer finalRange) throws BusinessException {
-
-        if (initialRange > finalRange) {
-            throw new BusinessException("el rango final debe ser mayor al inicial");
-        }
 
         deleteAllNotConsideredNumbers();
         this.finalRange = finalRange;

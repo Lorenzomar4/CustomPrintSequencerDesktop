@@ -25,13 +25,17 @@ public class Sequencer {
     }
 
     public List<ISheet> getPagesToPrint() {
-        final List<Integer> listSortedAscending = returnAllNumberPagesSortedAscending();
-        final SheetFactory sheetFactory = new SheetFactory(cantOfPages(), listSortedAscending);
-        final List<ISheet> sheetList = new ArrayList<>();
+        List<Integer> listSortedAscending = returnAllNumberPagesSortedAscending();
+        SheetFactory sheetFactory = new SheetFactory(cantOfPages(), listSortedAscending);
+        List<ISheet> sheetList = new ArrayList<>();
 
-        for (int i = 0; i <= cantOfPages() - 1; i = i + 2) {
+        int totalPages = cantOfPages();
+        for (int i = 0; i < totalPages; i += 2) {
             sheetList.add(sheetFactory.returnSheet(i));
         }
+
+        listSortedAscending = null;
+
         return sheetList;
     }
 

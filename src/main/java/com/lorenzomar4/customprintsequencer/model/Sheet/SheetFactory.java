@@ -24,6 +24,10 @@ public class SheetFactory {
 
     }
 
+    public void nulleable(){
+        this.listOfNumber = null;
+    }
+
 }
 
 

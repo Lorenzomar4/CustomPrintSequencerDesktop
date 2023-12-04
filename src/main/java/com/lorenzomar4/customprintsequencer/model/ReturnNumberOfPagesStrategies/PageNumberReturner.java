@@ -2,6 +2,7 @@ package com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies
 
 import com.lorenzomar4.customprintsequencer.model.exception.BusinessException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 

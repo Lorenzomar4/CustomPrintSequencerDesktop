@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.customprintsequencer/com.lorenzomar4.customprintsequencer.HelloApplication
+                                com.example.customprintsequencer/com.lorenzomar4.customprintsequencer.CustomPrintSequencerApp
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

@@ -94,6 +94,7 @@ public class StrategieTest {
 
     }
 
+    /*
     @Test
     @DisplayName("Al crear un nuevo rango de paginas se lanza una excepcion por asignar un rango inicial mayor al rango final")
     void launchExceptionIfTheInitialRangeIsGreaterThanFinaleRange(){
@@ -114,6 +115,8 @@ public class StrategieTest {
             listOfRangePagesNumber.setFinalRange(0);
         });
     }
+    */
+
 
     @Test
     @DisplayName("Si el rango inicial es igual al final entonces se retorna una lista con un solo numero")

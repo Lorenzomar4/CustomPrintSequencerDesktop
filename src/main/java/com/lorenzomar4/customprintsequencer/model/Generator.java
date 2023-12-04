@@ -22,7 +22,6 @@ public class Generator {
         int cantOfPages = sequencer.cantOfPages();
         boolean isPair = cantOfPages%2==0;
         List<PageOfSheet> listOfPages = sequencer.getPagesToPrint().stream().map(ISheet::getBackSide).toList();
-
         return (isPair) ? listOfPages :listOfPages.subList(0,listOfPages.size()-1);
     }
 
@@ -39,7 +38,27 @@ public class Generator {
 
     public String correctString(String aString) {
         return aString.substring(1, aString.length() - 1);
+    }
+
+    public Integer numberOfPagesTotal() {
+        return sequencer.cantOfPages();
+    }
+
+    public Integer numberOfFrontPages(){
+        int resultado = numberOfPagesTotal() / 2;
+
+        if ( numberOfPagesTotal() % 2 != 0) {
+            resultado++;
+        }
+
+        return resultado;
+    }
+
+    public Integer numberOfOppositePages() {
+        return  numberOfPagesTotal()/2;
 
     }
+
+
 
 }
