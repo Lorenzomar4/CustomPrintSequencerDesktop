@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.stage.Window;
 
 import java.net.URL;
 import java.util.List;
@@ -93,10 +94,16 @@ public class CustomPrintSequencerController implements Initializable {
             }
 
         } catch (BusinessException e) {
+            Window ownerWindow = initialPage.getScene().getWindow();
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
             alert.setContentText(e.getMessage());
+
+            // Establece la ventana principal como propietaria del Alert
+            alert.initOwner(ownerWindow);
+
             alert.showAndWait();
 
             onlyFrontPages.setText(e.getMessage());

@@ -1,66 +1,80 @@
-.botton-main{
-    -fx-background-color: #ff284d;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-border-radius: 50;
-    -fx-text-fill: #ffdbe0;
-}
-
-.etiqueta-main{
-    -fx-font-size: 30px;
-    -fx-padding: 20px;
-    -fx-text-fill: #ff1c1c;
-    -fx-font-weight: 600;
-
-}
 
 .background-vbox{
     -fx-background-color: white;
-    -fx-padding: 30px 20px 30px 20px
+    -fx-padding: 10px 20px 30px 20px
 
-}
-
-.rectangle{
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-
-    -fx-border-width: 1px;
 }
 
 .textForm-stye{
-    -fx-background-color: #fafafa;
-    -fx-border-color: #4c555d;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 4px;
-
+    -fx-border-style: solid;
+    -fx-border-color: white white white white;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: #f6f6f6;
 
 }
+
 
 .textForm-stye:focused {
     -fx-background-color: #ffffff;
-    -fx-border-color: #fa1550;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: white white #ff284d white;
     -fx-background-radius: 10px;
-    -fx-border-radius: 4px;
+    -fx-border-radius: 0;
+}
+
+.text-area-style{
+    /* terminalTextArea.setStyle("-fx-control-inner-background:#000000; -fx-font-family: Consolas; -fx-highlight-fill: #00ff00; -fx-highlight-text-fill: #000000; -fx-text-fill: #00ff00; ");
+*/
+
+    -fx-border-radius: 2px;
+    -fx-border-color: #ffffff;
+    -fx-text-fill: #646464;
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+
 
 
 }
 
-.textForm-stye-result{
-    -fx-background-color: #ffffff;
-    -fx-border-color: #989797;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 4px;
-    -fx-control-inner-background: white; /* Hace que el padding sea transparente */
-
+.text-area-style .scroll-pane {
+    -fx-background-color: white;
 
 }
-
-.textForm-stye-result:focused{
-    -fx-border-color: #fa1550;
-
+.text-area-style .scroll-pane .viewport{
+    -fx-background-color: white;
 
 }
+.text-area-style .scroll-pane .content{
+    -fx-background-color: #f6f6f6;
+}
+
+.text-area-style:focused{
+    -fx-border-color: #ff3c68;
+
+    -fx-effect: null;
+    -fx-background-color: transparent;
+
+    -fx-faint-focus-color: white;
+    -fx-focus-color: white;
+
+    -fx-border-width: 2px;
+}
+
+
+.textForm-result-stye:focused{
+    -fx-border-color: white white #28ffff; /* Color del borde inferior */
+}
+
+
+.textForm-stye .scroll-bar:vertical {
+    -fx-background-color: #ffffff; /* Color de fondo del scrollbar vertical */
+}
+
+
+.text-area .scroll-bar:horizontal .track {
+    -fx-background-color: #ee0000; /* Color del pulgar (scroll) vertical */
+}
+
 
 .button-range{
     -fx-background-color: #f34567;
@@ -89,18 +103,23 @@
 
 
 .button-cancelar{
-    -fx-background-color: #a1a1a1;
+    -fx-background-color: #ffffff;
     -fx-min-height: 30px;
+    -fx-border-width: 1px;
+    -fx-border-color: #0da1fd;
+    -fx-border-radius: 4px;
+    -fx-text-fill :  #0da1fd;
+
 }
 
 
 .button-cancelar:hover{
-    -fx-background-color: #7e7e7e;
+    -fx-background-color: #f5f9fc;
 
 }
 
 .button-cancelar:pressed{
-    -fx-background-color: #a1a1a1;
+    -fx-background-color: #ffffff;
 
 }
 
