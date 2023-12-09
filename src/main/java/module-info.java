@@ -6,7 +6,7 @@ module com.example.customprintsequencer {
     exports com.lorenzomar4.customprintsequencer;
     exports com.lorenzomar4.customprintsequencer.model;
     exports com.lorenzomar4.customprintsequencer.model.exception;
-    exports com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies;
+    exports com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages;
     exports com.lorenzomar4.customprintsequencer.model.Sheet;
     exports com.lorenzomar4.customprintsequencer.controller.CustomPrinterSequencerController;
 

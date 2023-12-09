@@ -1,7 +1,7 @@
 package com.lorenzomar4.customprintsequencer.controller.CustomPrinterSequencerController;
 
 import com.lorenzomar4.customprintsequencer.model.Generator;
-import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByRangeNumber;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.ByRangeNumber;
 import com.lorenzomar4.customprintsequencer.model.Sequencer;
 import com.lorenzomar4.customprintsequencer.model.chainOfValidation.TheInitialValidator;
 import com.lorenzomar4.customprintsequencer.model.exception.BusinessException;

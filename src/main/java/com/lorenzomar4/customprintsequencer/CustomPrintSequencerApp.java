@@ -25,9 +25,6 @@ public class CustomPrintSequencerApp extends Application {
 
         stage.setFullScreenExitHint("");
 
-
-
-
         stage.show();
     }
 

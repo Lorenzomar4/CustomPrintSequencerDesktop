@@ -1,7 +1,7 @@
 package com.lorenzomar4.customprintsequencer.model;
 
-import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByExplicitNumberList;
-import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.PageNumberReturner;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.ByExplicitNumberList;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.PageNumberReturner;
 import com.lorenzomar4.customprintsequencer.model.Sheet.ISheet;
 import com.lorenzomar4.customprintsequencer.model.Sheet.SheetFactory;
 

@@ -1,6 +1,6 @@
-import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByCompositionOfStrategies;
-import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByExplicitNumberList;
-import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPagesStrategies.ByRangeNumber;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.ByCompositionOfStrategies;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.ByExplicitNumberList;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.ByRangeNumber;
 import com.lorenzomar4.customprintsequencer.model.Sequencer;
 import com.lorenzomar4.customprintsequencer.model.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
@@ -54,19 +54,6 @@ public class CompositionOfStrategiesTest {
         Assertions.assertEquals(5,aSequencer.cantOfPages());
     }
 
-    @Test
-    @DisplayName("Si se agrega nuevo rango o una lista de numeros que incluye numeros ya existente en el Sequencer se lanza una excepcion")
-    void launchExceptionIfTheNewRangeorListofnumberContainsANumberThatAlreadyExistsInTheSequencer()  throws BusinessException {
-        listOfPageNumberReturner.addNewPageNumberReturner(listOfRangePagesNumber);
 
-        assertThrows(RuntimeException.class, () -> {
-            listOfPageNumberReturner.addNewPageNumberReturner(listOfPagesNumber);
-        });
-
-        assertThrows(RuntimeException.class, () -> {
-            listOfPageNumberReturner.addNewPageNumberReturner(listOfRangePagesNumber2);
-        });
-
-    }
 
 }

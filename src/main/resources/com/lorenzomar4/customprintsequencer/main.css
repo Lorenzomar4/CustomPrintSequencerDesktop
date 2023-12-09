@@ -48,6 +48,10 @@
     -fx-background-color: #f6f6f6;
 }
 
+.text-area-style:focused .scroll-pane .content{
+    -fx-background-color: #ffffff;
+}
+
 .text-area-style:focused{
     -fx-border-color: #ff3c68;
 
