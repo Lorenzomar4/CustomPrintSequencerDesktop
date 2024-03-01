@@ -17,19 +17,18 @@ public class ByRangeNumber implements PageNumberReturner {
 
     public ByRangeNumber() {}
 
-    public List<Integer> getListOfIntegers() {
-        List<Integer> listOfInteger = new ArrayList<>();
+    @Override
+    public int[] generateListOfNumber() {
+        int lenght = Math.abs(finalRange-initialRange)+1;
+        int[] listOfInteger = new int[lenght];
+        int index = 0;
 
         for (int i = this.initialRange; i <= this.finalRange; i++) {
-            listOfInteger.add(i);
+            listOfInteger[index]=i;
+            index++;
         }
+
         return listOfInteger;
-    }
-
-
-    @Override
-    public List<Integer> generateListOfNumber() {
-        return getListOfIntegers();
     }
 
 
@@ -40,9 +39,7 @@ public class ByRangeNumber implements PageNumberReturner {
     }
 
     public void setFinalRange(Integer finalRange) throws BusinessException {
-
         this.finalRange = finalRange;
-
     }
 
 

@@ -4,6 +4,6 @@ import java.util.List;
 
 
 public interface   PageNumberReturner {
-    List<Integer> generateListOfNumber();
+    int[] generateListOfNumber();
 
 }

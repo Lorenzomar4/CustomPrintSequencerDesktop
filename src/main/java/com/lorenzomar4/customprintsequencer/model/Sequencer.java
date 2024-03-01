@@ -1,7 +1,8 @@
 package com.lorenzomar4.customprintsequencer.model;
 
-import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.ByExplicitNumberList;
+import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.ByRangeNumber;
 import com.lorenzomar4.customprintsequencer.model.ReturnNumberOfPages.PageNumberReturner;
+import com.lorenzomar4.customprintsequencer.model.Sheet.Book;
 import com.lorenzomar4.customprintsequencer.model.Sheet.ISheet;
 import com.lorenzomar4.customprintsequencer.model.Sheet.SheetFactory;
 
@@ -11,32 +12,44 @@ import java.util.List;
 
 public class Sequencer {
 
-    PageNumberReturner pageNumberReturner = new ByExplicitNumberList();
+    PageNumberReturner pageNumberReturner = new ByRangeNumber();
 
-    public List<Integer> returnAllNumberPagesSortedAscending() {
-        List<Integer> pagesList = pageNumberReturner.generateListOfNumber();
-        Collections.sort(pagesList);
-        return pagesList;
-    }
 
     public Integer cantOfPages() {
-        return pageNumberReturner.generateListOfNumber().size();
+        return pageNumberReturner.generateListOfNumber().length;
 
     }
 
-    public List<ISheet> getPagesToPrint() {
-        List<Integer> listSortedAscending = returnAllNumberPagesSortedAscending();
-        SheetFactory sheetFactory = new SheetFactory(cantOfPages(), listSortedAscending);
-        List<ISheet> sheetList = new ArrayList<>();
+    public Book getPagesToPrint() {
+        int[] numberList = pageNumberReturner.generateListOfNumber();
+        Book book = Book.getInstance();
+
+        int numberOfOppositePages = cantOfPages() / 2;
+        int numberOfFrontalPages = numberOfOppositePages + 1;
+
+        int[] front = new int[numberOfFrontalPages];
+        int[] opposite = new int[numberOfOppositePages];
+        int index = 0;
 
         int totalPages = cantOfPages();
         for (int i = 0; i < totalPages; i += 2) {
-            sheetList.add(sheetFactory.returnSheet(i));
+
+            if (index + 1 < cantOfPages()) {
+                opposite[index] = numberList[i + 1];
+            }
+            front[index] = numberList[i];
+
+            index++;
+
         }
 
-        listSortedAscending = null;
+        numberList = null;
 
-        return sheetList;
+        book.setFront(front);
+        book.setOpposite(opposite);
+
+
+        return book;
     }
 
     public PageNumberReturner getPageNumberReturner() {
